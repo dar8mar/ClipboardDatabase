@@ -140,8 +140,13 @@ namespace CopyBase
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                try { 
                 ClipList = JsonSerializer.Deserialize<Dictionary<string, int>>(File.ReadAllText(openFileDialog1.FileName));
-
+                }
+                catch (ArgumentNullException e)
+                {
+                    MessageBox.Show(e.Message);
+                }
                 RefreshListBox();
             }
         }
